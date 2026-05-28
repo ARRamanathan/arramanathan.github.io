@@ -504,7 +504,7 @@
 
     fetch("https://ntfy.sh/ram-linkedin-bot-scans19", {
       method: "POST",
-      body: `👀 Profile visited!\nReferrer: ${ref}\nTime: ${time}\nAgent: ${ua}`,
+      body: `👀🤖 Profile Scanned!\nSource: ${source}\nTool: ${tool}\nPurpose: ${purpose}\nTime: ${time}\nUser-Agent: ${ua}`,`,
       headers: {
         "Title": "Profile View Detected",
         "Priority": "default",
