@@ -490,7 +490,7 @@
 
     // Console easter egg for curious humans & bots
     console.log('%c👋 Hey there!', 'font-size:22px; color:#1d6b5e; font-weight:bold;');
-    console.log('%cHuman? Nice. Bot? You\'ve already been logged.\nhttps://arramanathan.github.io/scan?source=console', 'font-size:13px; color:#7a7568;');
+    console.log('%cHuman? Nice. Bot? You\'ve already been logged.\nhttps://arramanathan.github.io/', 'font-size:13px; color:#7a7568;');
 
     // Plausible-looking bot counter (date-seeded)
     const base = 47;
@@ -498,19 +498,22 @@
     document.getElementById('scan-count').textContent = base + days;
 
     // Notify on every profile visit
-    const ref  = document.referrer || 'direct';
-    const ua   = navigator.userAgent;
-    const time = new Date().toISOString();
+    const params  = new URLSearchParams(window.location.search);
+    const source  = params.get("source") || "direct";
+    const tool    = params.get("tool")   || "unknown";
+    const ref     = document.referrer   || "direct";
+    const ua      = navigator.userAgent;
+    const time    = new Date().toISOString();
     
     fetch("https://ntfy.sh/ram-linkedin-bot-scans19", {
       method: "POST",
-      body: `👀 Profile visited!\nReferrer: ${ref}\nTime: ${time}\nAgent: ${ua}`,
+      body: `👀 Profile visited!\nSource: ${source}\nTool: ${tool}\nReferrer: ${ref}\nTime: ${time}\nAgent: ${ua}`,
       headers: {
         "Title": "Profile View Detected",
         "Priority": "default",
         "Tags": "eyes"
       }
-});
+    });
   </script>
 
 </body>
