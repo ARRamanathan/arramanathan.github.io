@@ -502,6 +502,9 @@
     document.getElementById('scan-count').textContent = base + days;
 
     // Notify on every profile visit
+    const _p = new URLSearchParams(window.location.search);
+    const source = _p.get('source') || 'direct';
+    const tool = _p.get('tool') || 'unknown';
     const ref = document.referrer || 'direct';
     const ua  = navigator.userAgent;
     const time = new Date().toISOString();
